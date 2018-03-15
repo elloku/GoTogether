@@ -12,8 +12,8 @@ import com.xlman.factory.model.db.Group;
 import com.xlman.factory.model.db.Message;
 import com.xlman.factory.model.db.Session;
 import com.xlman.gotogether.R;
-import com.xlman.gotogether.frags.message.ChatGroupFragment;
-import com.xlman.gotogether.frags.message.ChatUserFragment;
+import com.xlman.gotogether.fragments.message.ChatGroupFragment;
+import com.xlman.gotogether.fragments.message.ChatUserFragment;
 
 public class MessageActivity extends Activity {
     // 接收者Id，可以是群，也可以是人的Id

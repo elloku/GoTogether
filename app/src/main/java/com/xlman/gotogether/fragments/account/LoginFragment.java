@@ -17,7 +17,6 @@ import butterknife.OnClick;
 /**
  * 登录的界面
  *
- *
  */
 public class LoginFragment extends PresenterFragment<LoginContract.Presenter>
         implements LoginContract.View {

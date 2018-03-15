@@ -13,8 +13,8 @@ import android.view.MenuItem;
 import com.xlman.common.app.Fragment;
 import com.xlman.common.app.ToolbarActivity;
 import com.xlman.gotogether.R;
-import com.xlman.gotogether.frags.search.SearchGroupFragment;
-import com.xlman.gotogether.frags.search.SearchUserFragment;
+import com.xlman.gotogether.fragments.search.SearchGroupFragment;
+import com.xlman.gotogether.fragments.search.SearchUserFragment;
 
 public class SearchActivity extends ToolbarActivity {
     private static final String EXTRA_TYPE = "EXTRA_TYPE";

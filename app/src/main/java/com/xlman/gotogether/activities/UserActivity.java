@@ -14,7 +14,7 @@ import com.bumptech.glide.request.target.ViewTarget;
 import com.xlman.common.app.Activity;
 import com.xlman.common.app.Fragment;
 import com.xlman.gotogether.R;
-import com.xlman.gotogether.frags.user.UpdateInfoFragment;
+import com.xlman.gotogether.fragments.user.UpdateInfoFragment;
 
 import net.qiujuer.genius.ui.compat.UiCompat;
 

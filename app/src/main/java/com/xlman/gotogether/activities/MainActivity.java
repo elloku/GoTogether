@@ -20,8 +20,8 @@ import com.xlman.common.app.Activity;
 import com.xlman.common.widget.PortraitView;
 import com.xlman.factory.persistence.Account;
 import com.xlman.gotogether.R;
-import com.xlman.gotogether.frags.main.ContactFragment;
-import com.xlman.gotogether.frags.main.InfoFragment;
+import com.xlman.gotogether.fragments.main.ContactFragment;
+import com.xlman.gotogether.fragments.main.InfoFragment;
 import com.xlman.gotogether.helper.NavHelper;
 
 import net.qiujuer.genius.ui.widget.FloatActionButton;

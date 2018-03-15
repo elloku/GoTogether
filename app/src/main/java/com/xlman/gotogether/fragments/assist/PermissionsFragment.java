@@ -24,6 +24,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * 权限申请弹出框
+ *
  */
 public class PermissionsFragment extends BottomSheetDialogFragment
         implements EasyPermissions.PermissionCallbacks {

@@ -14,9 +14,9 @@ import com.bumptech.glide.request.target.ViewTarget;
 import com.xlman.common.app.Activity;
 import com.xlman.common.app.Fragment;
 import com.xlman.gotogether.R;
-import com.xlman.gotogether.frags.account.AccountTrigger;
-import com.xlman.gotogether.frags.account.LoginFragment;
-import com.xlman.gotogether.frags.account.RegisterFragment;
+import com.xlman.gotogether.fragments.account.AccountTrigger;
+import com.xlman.gotogether.fragments.account.LoginFragment;
+import com.xlman.gotogether.fragments.account.RegisterFragment;
 
 import net.qiujuer.genius.ui.compat.UiCompat;
 

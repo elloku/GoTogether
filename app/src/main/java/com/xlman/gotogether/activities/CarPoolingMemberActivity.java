@@ -17,7 +17,7 @@ import com.xlman.factory.model.db.view.MemberUserModel;
 import com.xlman.factory.presenter.group.GroupMembersContract;
 import com.xlman.factory.presenter.group.GroupMembersPresenter;
 import com.xlman.gotogether.R;
-import com.xlman.gotogether.frags.group.GroupMemberAddFragment;
+import com.xlman.gotogether.fragments.group.GroupMemberAddFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;

@@ -19,6 +19,7 @@ import butterknife.OnClick;
 
 /**
  * 注册的界面
+ *
  */
 public class RegisterFragment extends PresenterFragment<RegisterContract.Presenter>
         implements RegisterContract.View {
