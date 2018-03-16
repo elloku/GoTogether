@@ -29,7 +29,7 @@ public class UploadHelper {
 
     private static OSS getClient() {
         OSSCredentialProvider credentialProvider = new OSSPlainTextAKSKCredentialProvider(
-                "LTAIhrKmJvrNTHsV", "TeOcFubLCqnrX3ODamZRe0KOxTU3zP");
+                "************", "***************");
         return new OSSClient(Factory.app(), ENDPOINT, credentialProvider);
     }
 
