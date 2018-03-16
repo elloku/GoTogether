@@ -139,7 +139,7 @@
                 android:tint="@color/colorAccent" />
 
             <EditText
-                android:id="@+id/edit_name"
+                android:id="@+id/edit_target"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/len_2"

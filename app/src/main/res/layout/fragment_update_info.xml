@@ -67,7 +67,7 @@
             tools:layout_editor_absoluteX="222dp" />
 
         <net.qiujuer.genius.ui.widget.EditText
-            android:id="@+id/edit_desc"
+            android:id="@+id/edit_current"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

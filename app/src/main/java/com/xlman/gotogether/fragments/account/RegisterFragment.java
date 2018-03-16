@@ -27,7 +27,7 @@ public class RegisterFragment extends PresenterFragment<RegisterContract.Present
 
     @BindView(R.id.edit_phone)
     EditText mPhone;
-    @BindView(R.id.edit_name)
+    @BindView(R.id.edit_target)
     EditText mName;
     @BindView(R.id.edit_password)
     EditText mPassword;

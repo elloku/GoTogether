@@ -38,7 +38,7 @@ public class UpdateInfoFragment extends PresenterFragment<UpdateInfoContract.Pre
     @BindView(R.id.im_sex)
     ImageView mSex;
 
-    @BindView(R.id.edit_desc)
+    @BindView(R.id.edit_current)
     EditText mDesc;
 
     @BindView(R.id.im_portrait)

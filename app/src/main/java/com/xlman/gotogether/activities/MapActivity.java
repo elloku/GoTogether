@@ -61,6 +61,8 @@ public class MapActivity extends Activity {
     private float mCurrentX;
     private LocationMode mLocationMode;
 
+    final ImageView button = findViewById(R.id.btn_menu);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +74,6 @@ public class MapActivity extends Activity {
         initView();
         initLocation();
 
-        final ImageView button = findViewById(R.id.btn_menu);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

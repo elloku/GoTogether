@@ -25,8 +25,6 @@
             android:orientation="horizontal"
             android:padding="@dimen/len_16">
 
-
-
             <ImageView
                 android:id="@+id/ic_icon"
                 android:layout_width="@dimen/len_128"
@@ -64,7 +62,7 @@
                     app:gLineSize="1dp" />
 
                 <net.qiujuer.genius.ui.widget.EditText
-                    android:id="@+id/edit_name"
+                    android:id="@+id/edit_target"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/label_group_name"
@@ -85,11 +83,13 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                     <net.qiujuer.genius.ui.widget.EditText
-                        android:id="@+id/edit_desc"
-                        android:layout_width="match_parent"
+                        android:id="@+id/edit_current"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:hint="@string/label_group_desc"
+                        android:text=""
                         android:inputType="textMultiLine"
                         android:maxLength="64"
                         android:maxLines="2"
@@ -106,14 +106,15 @@
                         app:gLineSize="1dp" />
 
                     <ImageView
+                        android:id="@+id/locate"
                         android:layout_width="36dp"
                         android:layout_height="48dp"
+                        android:layout_alignParentEnd="true"
                         android:layout_gravity="end"
-                        android:layout_alignEnd="@id/edit_desc"
-                        android:layout_alignBottom="@id/edit_desc"
+                        android:layout_alignEnd="@id/edit_current"
+                        android:layout_alignBottom="@id/edit_current"
                         android:src="@drawable/ic_my_location"/>
                 </RelativeLayout>
-
 
             </LinearLayout>
 
