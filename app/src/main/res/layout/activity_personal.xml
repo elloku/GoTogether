@@ -14,7 +14,7 @@
         android:layout_marginBottom="@dimen/len_48"
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
-        android:src="@drawable/wzunight"
+        android:src="@drawable/bg_src_main"
         app:layout_constraintBottom_toTopOf="@+id/guideline1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -39,6 +39,7 @@
         android:layout_margin="@dimen/len_16"
         android:ellipsize="end"
         android:text="@string/app_name"
+        android:textColor="@color/cyan_500"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -98,7 +99,27 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         tools:text="i am a student from zhejiang yiwu ,i am study in wenzhou university,and i am happy." />
-
+    <net.qiujuer.genius.ui.widget.Button
+        android:id="@+id/btn_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/len_28"
+        android:layout_marginBottom="@dimen/len_16"
+        android:background="@drawable/sel_btn_bg_accent_44"
+        android:gravity="center"
+        android:minWidth="@dimen/len_156"
+        android:text="@string/btn_modify"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:gTouchColor="@color/white_alpha_48"
+        app:gTouchCornerRadius="22dp"
+        app:gTouchEffect="ripple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:visibility="visible" />
     <net.qiujuer.genius.ui.widget.Button
         android:id="@+id/btn_say_hello"
         android:layout_width="wrap_content"

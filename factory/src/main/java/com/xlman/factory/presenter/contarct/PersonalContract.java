@@ -9,8 +9,8 @@ import com.xlman.factory.presenter.BaseContract;
  */
 public interface PersonalContract {
     interface Presenter extends BaseContract.Presenter {
-        // 获取用户信息
-        User getUserPersonal();
+        User getUserPersonal();// 获取用户信息
+        void update(String desc);// 更新用户的描述
     }
 
     interface View extends BaseContract.View<Presenter> {
@@ -24,5 +24,8 @@ public interface PersonalContract {
 
         // 设置关注状态
         void setFollowStatus(boolean isFollow);
+
+        // 更新成功回调
+        void updateSucceed();
     }
 }

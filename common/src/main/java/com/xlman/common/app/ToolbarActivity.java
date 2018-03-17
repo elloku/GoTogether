@@ -6,9 +6,9 @@ import android.support.v7.widget.Toolbar;
 import com.xlman.common.R;
 
 /**
+ *
  * Created by xlman on 2018/2/10.
  */
-
 public abstract class ToolbarActivity extends Activity {
 
     protected Toolbar mToolbar;
@@ -19,11 +19,6 @@ public abstract class ToolbarActivity extends Activity {
         initToolbar((Toolbar) findViewById(R.id.toolbar));
     }
 
-    /**
-     * 初始化toolbar
-     *
-     * @param toolbar Toolbar
-     */
     public void initToolbar(Toolbar toolbar) {
         mToolbar = toolbar;
         if (toolbar != null) {

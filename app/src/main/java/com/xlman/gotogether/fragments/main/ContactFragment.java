@@ -15,7 +15,6 @@ import com.xlman.factory.model.db.User;
 import com.xlman.factory.presenter.contarct.ContactContract;
 import com.xlman.factory.presenter.contarct.ContactPresenter;
 import com.xlman.gotogether.R;
-import com.xlman.gotogether.activities.MessageActivity;
 import com.xlman.gotogether.activities.PersonalActivity;
 
 import butterknife.BindView;
@@ -46,7 +45,6 @@ public class ContactFragment extends PresenterFragment<ContactContract.Presenter
     @Override
     protected void initWidget(View root) {
         super.initWidget(root);
-
         // 初始化Recycler
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycler.setAdapter(mAdapter = new RecyclerAdapter<User>() {
@@ -66,15 +64,14 @@ public class ContactFragment extends PresenterFragment<ContactContract.Presenter
         mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<User>() {
             @Override
             public void onItemClick(RecyclerAdapter.ViewHolder holder, User user) {
-                // 跳转到聊天界面
-                MessageActivity.show(getContext(), user);
+                // 跳转到个人界面
+                PersonalActivity.show(getContext(), user.getId());
             }
         });
 
-        // 初始化占位布局
+        // 初始化
         mEmptyView.bind(mRecycler);
         setPlaceHolderView(mEmptyView);
-
     }
 
     @Override

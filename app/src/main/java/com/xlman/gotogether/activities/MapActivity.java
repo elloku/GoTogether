@@ -61,8 +61,6 @@ public class MapActivity extends Activity {
     private float mCurrentX;
     private LocationMode mLocationMode;
 
-    final ImageView button = findViewById(R.id.btn_menu);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +71,7 @@ public class MapActivity extends Activity {
         this.context = this;
         initView();
         initLocation();
-
+        final ImageView button = findViewById(R.id.btn_menu);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,9 +89,17 @@ public class MapActivity extends Activity {
         mLocationClient.registerLocationListener(mLocationListener);
 
         LocationClientOption option = new LocationClientOption();
+        // 可选，设置返回经纬度坐标类型，默认gcj02
+        // gcj02：国测局坐标；
+        // bd09ll：百度经纬度坐标；
+        // bd09：百度墨卡托坐标；
+        // 海外地区定位，无需设置坐标类型，统一返回wgs84类型坐标
         option.setCoorType("bd09ll");
         option.setIsNeedAddress(true);
         option.setOpenGps(true);
+        // 可选，设置发起定位请求的间隔，int类型，单位ms
+        // 如果设置为0，则代表单次定位，即仅定位一次，默认为0
+        // 如果设置非0，需设置1000ms以上才有效
         option.setScanSpan(1000);
         mLocationClient.setLocOption(option);
 
@@ -255,7 +261,6 @@ public class MapActivity extends Activity {
     }
 
     private class MyLocationListener implements BDLocationListener {
-
         @Override
         public void onReceiveLocation(BDLocation location) {
             // 开启定位图层

@@ -27,9 +27,9 @@
 
             <ImageView
                 android:id="@+id/ic_icon"
-                android:layout_width="@dimen/len_128"
-                android:layout_height="@dimen/len_128"
-                android:layout_gravity="center"
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                android:layout_gravity="bottom"
                 android:src="@drawable/ic_launcher" />
 
             <LinearLayout
@@ -86,7 +86,7 @@
 
                     <net.qiujuer.genius.ui.widget.EditText
                         android:id="@+id/edit_current"
-                        android:layout_width="180dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/label_group_desc"
                         android:text=""
@@ -105,15 +105,6 @@
                         app:gLineColor="@color/white_alpha_240"
                         app:gLineSize="1dp" />
 
-                    <ImageView
-                        android:id="@+id/locate"
-                        android:layout_width="36dp"
-                        android:layout_height="48dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_gravity="end"
-                        android:layout_alignEnd="@id/edit_current"
-                        android:layout_alignBottom="@id/edit_current"
-                        android:src="@drawable/ic_my_location"/>
                 </RelativeLayout>
 
             </LinearLayout>

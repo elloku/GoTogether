@@ -117,6 +117,9 @@ public class SearchUserFragment extends PresenterFragment<SearchContract.Present
         @BindView(R.id.im_follow)
         ImageView mFollow;
 
+        @BindView(R.id.txt_desc)
+        TextView mDesc;
+
         private FollowContract.Presenter mPresenter;
 
         public ViewHolder(View itemView) {
@@ -129,6 +132,7 @@ public class SearchUserFragment extends PresenterFragment<SearchContract.Present
         protected void onBind(UserCard userCard) {
             mPortraitView.setup(Glide.with(SearchUserFragment.this), userCard);
             mName.setText(userCard.getName());
+            mDesc.setText(userCard.getDesc());
             mFollow.setEnabled(!userCard.isFollow());
         }
 

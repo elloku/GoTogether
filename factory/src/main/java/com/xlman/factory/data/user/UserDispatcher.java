@@ -15,7 +15,6 @@ import java.util.concurrent.Executors;
  *
  * Created by xlman on 2018/2/12.
  */
-
 public class UserDispatcher implements UserCenter {
     private static UserCenter instance;
     // 单线程池；处理卡片一个个的消息进行处理

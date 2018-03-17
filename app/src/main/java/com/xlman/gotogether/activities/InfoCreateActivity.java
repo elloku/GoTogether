@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
@@ -40,11 +39,6 @@ import butterknife.OnCheckedChanged;
 public class InfoCreateActivity extends PresenterToolbarActivity<GroupCreateContract.Presenter>
         implements GroupCreateContract.View {
 
-    // 定位
-    private LocationClient mLocationClient;
-    private MyLocationListener mLocationListener;
-    private String addrStr;
-
     @BindView(R.id.recycler)
     RecyclerView mRecycler;
 
@@ -57,43 +51,42 @@ public class InfoCreateActivity extends PresenterToolbarActivity<GroupCreateCont
     @BindView(R.id.edit_time)
     EditText mTime;
 
-    private class MyLocationListener implements BDLocationListener {
-
-        @Override
-        public void onReceiveLocation(BDLocation bdLocation) {
-            addrStr = bdLocation.getAddrStr();
-        }
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mLocationClient = new LocationClient(getApplicationContext());
-        mLocationClient.registerLocationListener(mLocationListener);
-        final ImageView mLocate = (ImageView) findViewById(R.id.locate);
-        mLocate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCurrent.setText(addrStr);
-            }
-        });
+        initLocation();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mLocationClient.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mLocationClient.stop();
+    }
+
+    // 定位
+    private LocationClient mLocationClient;
+    private MyLocationListener mLocationListener;
+
 
     private void initLocation() {
 
-        mLocationClient = new LocationClient(this);
+        mLocationClient = new LocationClient(getApplicationContext());
         mLocationListener = new MyLocationListener();
         mLocationClient.registerLocationListener(mLocationListener);
 
         LocationClientOption option = new LocationClientOption();
+
         option.setCoorType("bd09ll");
         option.setIsNeedAddress(true);
         option.setOpenGps(true);
         option.setScanSpan(1000);
-        // mLocationClient为第二步初始化过的LocationClient对象
-        // 需将配置好的LocationClientOption对象，通过setLocOption方法传递给LocationClient对象使用
-        // 更多LocationClientOption的配置，请参照类参考中LocationClientOption类的详细说明
         mLocationClient.setLocOption(option);
     }
 
@@ -182,7 +175,21 @@ public class InfoCreateActivity extends PresenterToolbarActivity<GroupCreateCont
         hideLoading();
     }
 
+    private class MyLocationListener implements BDLocationListener {
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            String addr = location.getAddrStr();    //获取详细地址信息
+            String country = location.getCountry();    //获取国家
+            String province = location.getProvince();    //获取省份
+            String city = location.getCity();    //获取城市
+            String district = location.getDistrict();    //获取区县
+            String street = location.getStreet();    //获取街道信息
 
+            mCurrent.setText(addr);
+        }
+    }
+
+    // 底部拼友列表适配器
     private class Adapter extends RecyclerAdapter<GroupCreateContract.ViewModel> {
         @Override
         protected int getItemViewType(int position, GroupCreateContract.ViewModel viewModel) {
@@ -195,6 +202,7 @@ public class InfoCreateActivity extends PresenterToolbarActivity<GroupCreateCont
         }
     }
 
+    // 底部拼友列表
     class ViewHolder extends RecyclerAdapter.ViewHolder<GroupCreateContract.ViewModel> {
         @BindView(R.id.im_portrait)
         PortraitView mPortrait;

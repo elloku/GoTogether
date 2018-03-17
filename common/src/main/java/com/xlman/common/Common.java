@@ -15,6 +15,5 @@ public class Common {
 
         // 基础的网络请求地址
         String API_URL = "http://192.168.1.119:8087/api/";
-
     }
 }

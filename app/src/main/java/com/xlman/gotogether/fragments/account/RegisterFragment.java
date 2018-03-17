@@ -21,24 +21,23 @@ import butterknife.OnClick;
  * 注册的界面
  *
  */
-public class RegisterFragment extends PresenterFragment<RegisterContract.Presenter>
-        implements RegisterContract.View {
+public class RegisterFragment extends PresenterFragment<RegisterContract.Presenter> implements RegisterContract.View {
     private AccountTrigger mAccountTrigger;
 
     @BindView(R.id.edit_phone)
     EditText mPhone;
+
     @BindView(R.id.edit_target)
     EditText mName;
+
     @BindView(R.id.edit_password)
     EditText mPassword;
-
 
     @BindView(R.id.loading)
     Loading mLoading;
 
     @BindView(R.id.btn_submit)
     Button mSubmit;
-
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -60,7 +59,6 @@ public class RegisterFragment extends PresenterFragment<RegisterContract.Present
     protected int getContentLayoutId() {
         return R.layout.fragment_register;
     }
-
 
     @OnClick(R.id.btn_submit)
     void onSubmitClick() {

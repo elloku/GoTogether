@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -21,12 +22,12 @@ import com.xlman.factory.model.db.User;
 import com.xlman.factory.presenter.contarct.PersonalContract;
 import com.xlman.factory.presenter.contarct.PersonalPresenter;
 import com.xlman.gotogether.R;
+import com.xlman.gotogether.dialog.CreateUserDialog;
 
 import net.qiujuer.genius.res.Resource;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
 
 
 public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.Presenter>
@@ -36,18 +37,26 @@ public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.
 
     @BindView(R.id.im_header)
     ImageView mHeader;
+
     @BindView(R.id.im_portrait)
     PortraitView mPortrait;
+
     @BindView(R.id.txt_name)
     TextView mName;
+
     @BindView(R.id.txt_desc)
     TextView mDesc;
+
     @BindView(R.id.txt_follows)
     TextView mFollows;
+
     @BindView(R.id.txt_following)
     TextView mFollowing;
+
     @BindView(R.id.btn_say_hello)
     Button mSayHello;
+
+    Button mModify;
 
     // 关注
     private MenuItem mFollowItem;
@@ -57,6 +66,19 @@ public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.
         Intent intent = new Intent(context, PersonalActivity.class);
         intent.putExtra(BOUND_KEY_ID, userId);
         context.startActivity(intent);
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mModify = (Button) findViewById(R.id.btn_modify);
+        mModify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showEditDialog(mModify);
+            }
+        });
     }
 
     @Override
@@ -82,6 +104,7 @@ public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.
         mPresenter.start();
     }
 
+    // 关注按钮的点击菜单
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -91,10 +114,11 @@ public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.
         return true;
     }
 
+    // 当关注按钮被点击后的操作
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_follow) {
-            // TODO 进行关注操作
+            // TODO 点击进行关注操作
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -109,10 +133,27 @@ public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.
         MessageActivity.show(this, user);
     }
 
+    CreateUserDialog createUserDialog;
+    String info;
 
-    /**
-     * 更改关注菜单状态
-     */
+    public void showEditDialog(View view) {
+        createUserDialog = new CreateUserDialog(this, R.style.AdInfoDialog, onClickListener);
+        createUserDialog.show();
+    }
+
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.btn_save:
+                    info = createUserDialog.text_info.getText().toString().trim();
+                    break;
+            }
+            mPresenter.update(info);
+        }
+    };
+
+    // 更改关注菜单状态
     private void changeFollowItemStatus() {
         if (mFollowItem == null)
             return;
@@ -122,7 +163,7 @@ public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.
                 .getDrawable(R.drawable.ic_favorite) :
                 getResources().getDrawable(R.drawable.ic_favorite_border);
         drawable = DrawableCompat.wrap(drawable);
-        DrawableCompat.setTint(drawable, Resource.Color.WHITE);
+        DrawableCompat.setTint(drawable, Resource.Color.RED);
         mFollowItem.setIcon(drawable);
     }
 
@@ -145,7 +186,10 @@ public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.
 
     @Override
     public void allowSayHello(boolean isAllow) {
+        // 判断是否是登陆的用户，如果否，则将"发起聊天按钮设为可见"
+        // 如果是，则将"修改信息"按钮设为可见
         mSayHello.setVisibility(isAllow ? View.VISIBLE : View.GONE);
+        mModify.setVisibility(isAllow ? View.GONE : View.VISIBLE);
     }
 
     @Override
@@ -155,7 +199,16 @@ public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.
     }
 
     @Override
+    public void updateSucceed() {
+         createUserDialog.hide();
+         // 此处刷新界面，将修改后的信息显示再界面上
+         // TODO 刷新界面时会闪一下，等找到好的办法再解决
+         recreate();
+    }
+
+    @Override
     protected PersonalContract.Presenter initPresenter() {
         return new PersonalPresenter(this);
     }
+
 }

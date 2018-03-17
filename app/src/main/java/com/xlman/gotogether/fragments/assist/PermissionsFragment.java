@@ -25,6 +25,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 /**
  * 权限申请弹出框
  *
+ * create by xlman on
  */
 public class PermissionsFragment extends BottomSheetDialogFragment
         implements EasyPermissions.PermissionCallbacks {
@@ -106,7 +107,6 @@ public class PermissionsFragment extends BottomSheetDialogFragment
                 Manifest.permission.ACCESS_NETWORK_STATE,
                 Manifest.permission.ACCESS_WIFI_STATE
         };
-
         return EasyPermissions.hasPermissions(context, perms);
     }
 

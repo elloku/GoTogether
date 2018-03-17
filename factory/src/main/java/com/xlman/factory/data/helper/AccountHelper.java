@@ -23,7 +23,7 @@ public class AccountHelper {
     /**
      * 注册的接口，异步的调用
      *
-     * @param model    传递一个注册的Model进来
+     * @param model    注册的Model
      * @param callback 成功与失败的接口回送
      */
     public static void register(final RegisterModel model, final DataSource.Callback<User> callback) {
@@ -80,8 +80,7 @@ public class AccountHelper {
         }
 
         @Override
-        public void onResponse(Call<RspModel<AccountRspModel>> call,
-                               Response<RspModel<AccountRspModel>> response) {
+        public void onResponse(Call<RspModel<AccountRspModel>> call, Response<RspModel<AccountRspModel>> response) {
             // 请求成功返回
             // 从返回中得到我们的全局Model，内部是使用的Gson进行解析
             RspModel<AccountRspModel> rspModel = response.body();
@@ -90,24 +89,8 @@ public class AccountHelper {
                 AccountRspModel accountRspModel = rspModel.getResult();
                 // 获取我的信息
                 User user = accountRspModel.getUser();
-                // 第一种，直接保存
+                // 保存
                 DbHelper.save(User.class, user);
-                //user.save();
-                    /*
-                    // 第二种通过ModelAdapter
-                    FlowManager.getModelAdapter(User.class)
-                            .save(user);
-
-                    // 第三种，事务中
-                    DatabaseDefinition definition = FlowManager.getDatabase(AppDatabase.class);
-                    definition.beginTransactionAsync(new ITransaction() {
-                        @Override
-                        public void execute(DatabaseWrapper databaseWrapper) {
-                            FlowManager.getModelAdapter(User.class)
-                                    .save(user);
-                        }
-                    }).build().execute();
-                    */
                 // 同步到XML持久化中
                 Account.login(accountRspModel);
 

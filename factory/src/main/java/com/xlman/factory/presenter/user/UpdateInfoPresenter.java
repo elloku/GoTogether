@@ -17,6 +17,8 @@ import net.qiujuer.genius.kit.handler.runable.Action;
 
 public class UpdateInfoPresenter extends BasePresenter<UpdateInfoContract.View>
         implements UpdateInfoContract.Presenter, DataSource.Callback<UserCard> {
+
+
     public UpdateInfoPresenter(UpdateInfoContract.View view) {
         super(view);
     }
@@ -49,6 +51,8 @@ public class UpdateInfoPresenter extends BasePresenter<UpdateInfoContract.View>
             });
         }
     }
+
+
 
     @Override
     public void onDataLoaded(UserCard userCard) {

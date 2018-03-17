@@ -12,6 +12,7 @@ import com.xlman.factory.presenter.BaseContract;
  */
 public abstract class PresenterToolbarActivity<Presenter extends BaseContract.Presenter>
         extends ToolbarActivity implements BaseContract.View<Presenter> {
+
     protected Presenter mPresenter;
     protected ProgressDialog mLoadingDialog;
 
@@ -31,11 +32,6 @@ public abstract class PresenterToolbarActivity<Presenter extends BaseContract.Pr
         }
     }
 
-    /**
-     * 初始化Presenter
-     *
-     * @return Presenter
-     */
     protected abstract Presenter initPresenter();
 
     @Override

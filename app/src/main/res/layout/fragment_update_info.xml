@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:background="@drawable/bg_src_tianjin"
+    tools:background="@drawable/bg_src_account"
     tools:context="com.xlman.gotogether.fragments.user.UpdateInfoFragment">
 
 
@@ -37,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-            tools:layout_editor_absoluteX="160dp" />
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
             android:id="@+id/textView"

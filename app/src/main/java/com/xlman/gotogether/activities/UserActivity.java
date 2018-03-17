@@ -37,7 +37,6 @@ public class UserActivity extends Activity {
         context.startActivity(new Intent(context, UserActivity.class));
     }
 
-
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_user;

@@ -104,11 +104,7 @@ public class UpdateInfoFragment extends PresenterFragment<UpdateInfoContract.Pre
         }
     }
 
-    /**
-     * 加载Uri到当前的头像中
-     *
-     * @param uri Uri
-     */
+    // 加载Uri到当前的头像中
     private void loadPortrait(Uri uri) {
         // 得到头像地址
         mPortraitPath = uri.getPath();
@@ -124,7 +120,6 @@ public class UpdateInfoFragment extends PresenterFragment<UpdateInfoContract.Pre
     void onSexClick() {
         // 性别图片点击的时候触发
         isMan = !isMan; // 反向性别
-
         Drawable drawable = getResources().getDrawable(isMan ?
                 R.drawable.ic_sex_man : R.drawable.ic_sex_woman);
         mSex.setImageDrawable(drawable);

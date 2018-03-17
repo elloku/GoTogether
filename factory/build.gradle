@@ -40,4 +40,5 @@ dependencies {
     compile "com.github.Raizlabs.DBFlow:dbflow:${rootProject.ext.dbflowVersion}"
 
     compile "net.qiujuer.genius:kit-reflect:$rootProject.ext.geniusVersion"
+
 }

@@ -8,9 +8,7 @@ public class BasePresenter<T extends BaseContract.View> implements BaseContract.
         setView(view);
     }
 
-    /**
-     * 设置一个View，子类可以复写
-     */
+    // 设置一个View，子类可以复写
     @SuppressWarnings("unchecked")
     protected void setView(T view) {
         this.mView = view;

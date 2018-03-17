@@ -17,7 +17,7 @@ import net.qiujuer.genius.kit.handler.runable.Action;
 import java.util.regex.Pattern;
 
 /**
-
+ * 注册的具体逻辑实现类
  */
 public class RegisterPresenter extends BasePresenter<RegisterContract.View>
         implements RegisterContract.Presenter, DataSource.Callback<User> {
