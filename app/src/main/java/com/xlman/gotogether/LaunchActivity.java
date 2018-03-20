@@ -1,31 +1,47 @@
 package com.xlman.gotogether;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.View;
 
 import com.xlman.common.app.Activity;
+import com.xlman.common.app.Application;
 import com.xlman.factory.persistence.Account;
 import com.xlman.gotogether.activities.AccountActivity;
 import com.xlman.gotogether.activities.MainActivity;
-import com.xlman.gotogether.fragments.assist.PermissionsFragment;
 
 import net.qiujuer.genius.res.Resource;
 import net.qiujuer.genius.ui.compat.UiCompat;
 
-public class LaunchActivity extends Activity {
+import java.util.List;
+
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
+
+import static pub.devrel.easypermissions.EasyPermissions.hasPermissions;
+
+
+public class LaunchActivity extends Activity implements EasyPermissions.PermissionCallbacks {
     // Drawable
     private ColorDrawable mBgDrawable;
 
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_launch;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -55,9 +71,7 @@ public class LaunchActivity extends Activity {
         });
     }
 
-    /**
-     * 等待个推框架对我们的PushId设置好值
-     */
+    // 等待个推框架对我们的PushId设置好值
     private void waitPushReceiverId() {
         if (Account.isLogin()) {
             // 已经登录情况下，判断是否绑定
@@ -75,7 +89,6 @@ public class LaunchActivity extends Activity {
                 return;
             }
         }
-
         // 循环等待
         getWindow().getDecorView()
                 .postDelayed(new Runnable() {
@@ -86,9 +99,7 @@ public class LaunchActivity extends Activity {
                 }, 500);
     }
 
-    /**
-     * 在跳转之前需要把剩下的50%进行完成
-     */
+    // 在跳转之前需要把剩下的50%进行完成
     private void skip() {
         startAnim(1f, new Runnable() {
             @Override
@@ -98,19 +109,20 @@ public class LaunchActivity extends Activity {
         });
     }
 
-    /**
-     * 真实的跳转
-     */
+    // 真实的跳转
     private void reallySkip() {
         // 权限检测，跳转
-        if (PermissionsFragment.haveAll(this, getSupportFragmentManager())) {
+        if (haveAllPermissions(this)) {
             // 检查跳转到主页还是登录
             if (Account.isLogin()) {
                 MainActivity.show(this);
             } else {
                 AccountActivity.show(this);
             }
-            finish();
+            this.finish();
+        }else {
+            EasyPermissions.requestPermissions(this, getString(R.string.title_assist_permissions), RC, perms);
+            reallySkip();
         }
     }
 
@@ -152,4 +164,48 @@ public class LaunchActivity extends Activity {
             return object.mBgDrawable.getColor();
         }
     };
+
+    private static final int RC = 0x0100;
+
+    boolean haveAllPermissions(Context context) {
+        // 检查是否具有所有的权限
+        boolean isHave=hasPermissions(context, perms);
+        if (isHave) {
+            Application.showToast(R.string.label_permission_ok);
+        }
+        return isHave;
+    }
+
+    String[] perms = new String[]{
+            Manifest.permission.INTERNET,
+            Manifest.permission.ACCESS_NETWORK_STATE,
+            Manifest.permission.ACCESS_WIFI_STATE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.ACCESS_COARSE_LOCATION};
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        // 如果权限有没有申请成功的权限存在，则弹出弹出框，用户点击后去到设置界面自己打开权限
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog
+                    .Builder(this)
+                    .build()
+                    .show();
+        }
+    }
+
+    // 权限申请的时候回调的方法，在这个方法中把对应的权限申请状态交给EasyPermissions框架
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // 传递对应的参数，并且告知接收权限的处理者是我自己
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
 }
