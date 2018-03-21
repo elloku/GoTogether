@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="label_permission_network">网络访问</string>
-    <string name="label_permission_network_desc">用于即时通讯传输</string>
-    <string name="label_permission_read">读取文件</string>
-    <string name="label_permission_read_desc">用于设置头像与发送图片</string>
-    <string name="label_permission_write">写外部文件</string>
-    <string name="label_permission_write_desc">用于OSS日志存储</string>
-    <string name="label_permission_record_audio">麦克风</string>
-    <string name="label_permission_record_audio_desc">用于音频聊天</string>
+    <string name="label_person">个  人</string>
+    <string name="label_search">搜  索</string>
+    <string name="label_setting">设  置</string>
+
     <string name="label_permission_submit">授权</string>
     <string name="label_permission_ok">已拥有所需的所有权限</string>
 
@@ -48,7 +44,6 @@
     <string name="label_chat_edit_hint">跟你的拼友说点什么吧…</string>
 
     <string name="toast_audio_play_error">播放失败！</string>
-    <string name="toast_audio_record_time_short_error">录音时间太短!</string>
 
     <string name="toast_download_error">下载失败!</string>
 

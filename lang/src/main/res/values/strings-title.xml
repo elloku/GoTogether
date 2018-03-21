@@ -5,8 +5,7 @@
     <string name="title_contact">我的拼友</string>
 
     <string name="title_search">搜索</string>
-    <string name="title_search_user">搜索拼友</string>
-    <string name="title_search_group">搜索拼车信息</string>
+    <string name="title_send">发送我的位置</string>
 
     <string name="title_select_gallery">选择照片</string>
     <string name="title_assist_permissions">授予权限</string>
