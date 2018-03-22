@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/id_common_map"
+        android:title="@string/map_comm"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/id_site_map"
+        android:title="@string/map_site"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/id_traffic_map"
+        android:title="@string/map_traffic_off"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/id_my_location"
+        android:title="@string/map_location_self"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/id_map_LocationMode_normal"
+        android:title="@string/map_LocationMode_normal"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/id_map_LocationMode_following"
+        android:title="@string/map_LocationMode_following"
+        app:showAsAction="never" />
+    
+    <item
+        android:id="@+id/id_map_LocationMode_compass"
+        android:title="@string/map_LocationMode_compass"
+        app:showAsAction="never" />
+
+
+</menu>
